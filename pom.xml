@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>4.0.1</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.sxPro</groupId>
+    <artifactId>SeleniumTests</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>SeleniumTests</name>
+    <description>SeleniumTests</description>
+    <url/>
+    <licenses>
+        <license/>
+    </licenses>
+    <developers>
+        <developer/>
+    </developers>
+    <scm>
+        <connection/>
+        <developerConnection/>
+        <tag/>
+        <url/>
+    </scm>
+
+    <properties>
+        <!--	版本号-->
+        <java.version>21</java.version>
+        <selenium.version>4.41.0</selenium.version>
+        <!--		<mockito.version>5.20.0</mockito.version>-->
+        <junit-jupiter.version>5.9.2</junit-jupiter.version>
+        <allure.version>2.29.0</allure.version>
+        <aspectj.version>1.9.21</aspectj.version>
+<!--        自定义路径-->
+        <project.test_result>${project.basedir}/src/test/test_results</project.test_result>
+    </properties>
+
+    <!-- Add allure-bom to dependency management to ensure correct versions of all the dependencies are used -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-bom</artifactId>
+                <version>${allure.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+
+    <dependencies>
+        <!--	selenium依赖-->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--		mockito依赖-->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-inline</artifactId>
+            <version>5.2.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--		webdriver自动管理依赖-->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>6.3.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webmvc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webmvc-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit5</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- SLF4J 核心接口 -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.16</version> <!-- 推荐使用最新稳定版 -->
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Add the following options to your maven-surefire-plugin -->
+            <plugin>
+                <!--maven-surefire版本3.2.3，注意JUnit6.0开始，maven-surefire版本不能低于3.0-->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.3</version>
+                <configuration>
+                    <parallel>none</parallel>
+                    <useUnlimitedThreads>false</useUnlimitedThreads>
+                    <argLine>
+                        -Xshare:off
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                        -javaagent:${settings.localRepository}/org/mockito/mockito-core/5.20.0/mockito-core-5.20.0.jar
+                    </argLine>
+                    <testFailureIgnore>true</testFailureIgnore>
+                </configuration>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.15.0</version>
+                <configuration>
+<!--                    systemPropertyVariables让 Java 测试代码能读取 Maven 配置的路径-->
+<!--                    <systemPropertyVariables>-->
+<!--                        <project.test_result>${project.test_result}</project.test_result>-->
+<!--                    </systemPropertyVariables>-->
+                    <reportVersion>${allure.version}</reportVersion>
+<!--                    resultsDirectory指向allure-results测试结果文件-->
+                    <resultsDirectory>${project.test_result}/allure-results</resultsDirectory>
+<!--                    注意allure generate是独立命令，不读取 POM 配置-->
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId> <!-- 插件所属组织（Maven官方） -->
+                <artifactId>maven-compiler-plugin</artifactId> <!-- 插件名称（编译插件） -->
+                <version>3.13.0</version> <!-- 插件版本（3.13.0是稳定版，适配Java 21） -->
+                <configuration>
+                    <!-- 1. 指定编译字符编码，避免中文注释/字符串编译乱码 -->
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <!-- 2. 指定编译目标Java版本（你这里是Java 21） -->
+                    <release>21</release>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.sxpro.seleniumtests.SeleniumTestsApplication01</mainClass>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>

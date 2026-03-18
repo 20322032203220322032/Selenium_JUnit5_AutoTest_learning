@@ -1,0 +1,16 @@
+C:\Users\asdf\Desktop\LoginTest\src\test\java\cn\tcmeta\logintest\LoginTestApplicationTests.java
+C:\Users\asdf\Desktop\LoginTest\src\test\java\cn\tcmeta\logintest\PageSetpMethods\HomeStepMethod.java
+C:\Users\asdf\Desktop\LoginTest\src\test\java\cn\tcmeta\logintest\PageSetpMethods\LoginStepMethod.java
+C:\Users\asdf\Desktop\LoginTest\src\test\java\cn\tcmeta\logintest\TestPages\HomePage.java
+C:\Users\asdf\Desktop\LoginTest\src\test\java\cn\tcmeta\logintest\TestPages\LoginPage.java
+C:\Users\asdf\Desktop\LoginTest\src\test\java\cn\tcmeta\logintest\Tools\AboutElemnet\ElementAssert.java
+C:\Users\asdf\Desktop\LoginTest\src\test\java\cn\tcmeta\logintest\Tools\AboutElemnet\ElementInteraction.java
+C:\Users\asdf\Desktop\LoginTest\src\test\java\cn\tcmeta\logintest\Tools\AutoScreenshot\AutoScreenshotExtension.java
+C:\Users\asdf\Desktop\LoginTest\src\test\java\cn\tcmeta\logintest\Tools\AutoScreenshot\FullPageScreenshot.java
+C:\Users\asdf\Desktop\LoginTest\src\test\java\cn\tcmeta\logintest\Tools\AutoScreenshot\WebdriverExtension.java
+C:\Users\asdf\Desktop\LoginTest\src\test\java\cn\tcmeta\logintest\Tools\BrowserFactory.java
+C:\Users\asdf\Desktop\LoginTest\src\test\java\cn\tcmeta\logintest\Tools\CookieUtils.java
+C:\Users\asdf\Desktop\LoginTest\src\test\java\cn\tcmeta\logintest\Tools\GetInformation\GetBrowserInfo.java
+C:\Users\asdf\Desktop\LoginTest\src\test\java\cn\tcmeta\logintest\Tools\GetInformation\GetCurrentMethodName.java
+C:\Users\asdf\Desktop\LoginTest\src\test\java\cn\tcmeta\logintest\Tools\GetInformation\GetRealWebDriver.java
+C:\Users\asdf\Desktop\LoginTest\src\test\java\cn\tcmeta\logintest\Tools\WindowHandle.java
