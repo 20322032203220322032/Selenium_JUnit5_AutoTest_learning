@@ -14,7 +14,7 @@ Selenium_JUnit5_AutoTest_learning
 
 依赖模块:selenium-java4.41.0、junit-jupiter-api/engine/params5.9.2、webdrivermanager6.3.3、allure-junit52.29.0、slf4j-api2.0.16、mockito-inline5.2.0、spring-boot-starter-parent4.0.1、aspectjweaver1.9.21
 
-核心 Maven 插件配置：
+核心 Maven 插件配置：maven-compiler-plugin3.13.0、maven-surefire-plugin3.2.3、allure-maven-plugin2.15.0、spring-boot-maven-plugin4.0.1
 
 三、项目结构
 
